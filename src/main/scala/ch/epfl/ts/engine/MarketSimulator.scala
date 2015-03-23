@@ -36,6 +36,10 @@ class MarketSimulator(marketId: Long, rules: MarketRules) extends Component {
       book delete del
     case t: Transaction =>
       tradingPrice = t.price
+    case q: Quote =>
+      println("MS: got quote: " + q.whatC + " " + q.withC + " ask: " + q.ask + " bid: " + q.bid)
+      tradingPrice = (q.bid + q.ask)/2.0
+
     case PrintBooks =>
       // print shows heap order (binary tree)
       println("Ask Orders Book: " + book.bids)
